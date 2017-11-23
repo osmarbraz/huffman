@@ -9,13 +9,12 @@
  *
  * Página 312 Thomas H. Cormen 3a Ed 
  *
- * Código de Hufmann com palavra de comprimento variável.
+ * Código de Huffman com palavra de comprimento variável.
  */
 
 /**
  * @author Osmar de Oliveira Braz Junior
  */
-
 import java.util.PriorityQueue;
 
 public class Principal {
@@ -28,6 +27,7 @@ public class Principal {
     // No da árvore binária dos códigos de Huffman
     // A classe precisa implementar Comparable devido a fila de prioridade
     private static class No implements Comparable<No> {
+
         private final char chave;
         private final int frequencia;
         private final No esquerda, direita;
@@ -40,7 +40,7 @@ public class Principal {
         }
 
         /**
-         *  Verifica se um nó é folha
+         * Verifica se um nó é folha
          */
         private boolean eFolha() {
             assert ((esquerda == null) && (direita == null)) || ((esquerda != null) && (direita != null));
@@ -48,10 +48,46 @@ public class Principal {
         }
 
         /**
-         *  Compara baseado na frequencia        
-        */
+         * Compara baseado na frequencia
+         */
         public int compareTo(No no) {
             return this.frequencia - no.frequencia;
+        }
+    }
+
+    /**
+     * Mostra a tabela de frequência.
+     *
+     * @param f Tabela de frequencia.
+     */
+    public static void mostrarFrequencia(int[] f) {
+        int n = f.length;
+        for (char i = 0; i < n; i++) {
+            if (f[i] != 0) {
+                System.out.println(i + " = " + f[i] + " ");
+            }
+        }
+    }
+
+    /**
+     * Mostra a tabela de símbolos.
+     *
+     * @param f Tabela de símbolo.
+     */
+    public static void mostrarTabelaSimbolos(String[] tabelaSimbolo) {
+        for (char i = 0; i < R; i++) {
+            if (tabelaSimbolo[i] != null) {
+                //Mostra o código do tamanho variável
+                int inicio = tabelaSimbolo[i].indexOf("1");
+                String codigo;
+                if (inicio == -1) {
+                    codigo = "0";
+                } else {
+                    codigo = tabelaSimbolo[i].substring(inicio, tabelaSimbolo[i].length());
+                }
+                System.out.println(i + " = " + codigo + " ");
+                //System.out.println(i + " = "+ tabelaSimbolo[i].substring(tabelaSimbolo[i].length()-Rn+1, tabelaSimbolo[i].length() ) + " ");
+            }
         }
     }
 
@@ -63,30 +99,16 @@ public class Principal {
      */
     public static int[] frequencia(char[] caracteres) {
         int n = caracteres.length;
-        int[] freq = new int[R];
+        int[] frequencia = new int[R];
         for (int i = 0; i < n; i++) {
-            freq[caracteres[i]]++;
+            frequencia[caracteres[i]]++;
         }
-        return freq;
-    }
-
-    /**
-     * Mostra a tabela de frequência.
-     * 
-     * @param f Tabela de frequencia.
-     */
-    public static void mostrarFrequencia(int[] f) {
-        int n = f.length;
-        for (char i = 0; i < n; i++) {
-            if (f[i] != 0) {
-                System.out.println(i+ " = "+f[i] + " ");
-            }
-        }
+        return frequencia;
     }
 
     /**
      * Retorna a fila de prioridade da tabela de frequência dos caracteres.
-     * 
+     *
      * @param f Tabela de frequencia dos caracteres.
      * @return A fila de prioridade.
      */
@@ -103,7 +125,7 @@ public class Principal {
 
     /**
      * Constroi a tabela de símbolos.
-     * 
+     *
      * @param tabelaSimbolo Tabela dos símbolos.
      * @param raiz Raiz da árvore
      * @param s String concatenada
@@ -123,30 +145,30 @@ public class Principal {
      * Executa o código de Hufmann.
      *
      * @param C Tabela da frequência dos caracteres.
-     * 
+     *
      * @return A raiz da árvore dos códigos.
      */
-    public static Object codigoHufmann(int[] C) {
+    public static Object codigoHuffman(int[] C) {
         //Qtde de caracteres
         int n = C.length;
         //Conta o número de caracteres
-        Rn=1;
+        Rn = 1;
         //Cria a fila de prioridade de C
         PriorityQueue Q = filaPrioridade(C);
         for (char i = 1; i <= n - 1; i++) {
             //No z = new No();
             No esquerda = (No) Q.poll();
-            int esq = esquerda != null ? esquerda.frequencia : 0;
+            int x = esquerda != null ? esquerda.frequencia : 0;
             No direita = (No) Q.poll();
-            int dir = direita != null ? direita.frequencia : 0;
-            Q.add(new No('*', esq + dir, esquerda, direita));
+            int y = direita != null ? direita.frequencia : 0; 
+            Q.add(new No('*', x + y, esquerda, direita));
         }
         return Q.poll();
     }
 
     public static void main(String args[]) {
 
-        System.out.println(">>> Código de Hufmann <<<");
+        System.out.println(">>> Código de Huffman com palavra de comprimento variável <<<");
 
         //Entrada a ser codificada
         String palavra = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbccccccccccccddddddddddddddddeeeeeeeeefffff";
@@ -161,18 +183,14 @@ public class Principal {
         mostrarFrequencia(C);
 
         //Retorna a raiz da árvore com os códigos apartir da tabela de frequencia C
-        No raiz = (No) codigoHufmann(C);
-        
+        No raiz = (No) codigoHuffman(C);
+
         //Constroi a tabela de símbolos
         String[] tabelaSimbolo = new String[C.length];
         constroiCodigo(tabelaSimbolo, raiz, "");
 
         //Mostra a tabela de códigos.
         System.out.println("Tabela de símbolos:");
-        for (char i = 0; i < R; i++) {
-            if (tabelaSimbolo[i] != null) {
-                System.out.println(i + " = "+ tabelaSimbolo[i].substring(tabelaSimbolo[i].length()-Rn+1, tabelaSimbolo[i].length() ) + " ");
-            }
-        }
+        mostrarTabelaSimbolos(tabelaSimbolo);
     }
 }
