@@ -155,14 +155,19 @@ public class Principal {
         Rn = 1;
         //Cria a fila de prioridade de C
         PriorityQueue Q = filaPrioridade(C);
-        for (char i = 1; i <= n - 1; i++) {
-            //No z = new No();
+        System.out.println("Ordem de retirada da fila de prioridade:");
+        for (char i = 1; i < Rn; i++) {
+            //No z = new No(); //Instanciado diretamente no local de inserção da lista de prioridade
             No esquerda = (No) Q.poll();
-            int x = esquerda != null ? esquerda.frequencia : 0;
-            No direita = (No) Q.poll();
+            int x = esquerda != null ? esquerda.frequencia : 0;            
+            No direita = (No) Q.poll();            
             int y = direita != null ? direita.frequencia : 0; 
+            System.out.println("Esq:" + (esquerda!=null?esquerda.chave:'*') + " f:" + x);
+            System.out.println("Dir:" + (direita!=null?direita.chave:'*') + " f:" + y);            
             Q.add(new No('*', x + y, esquerda, direita));
-        }
+        }        
+        No raiz = (No) Q.peek();
+        System.out.println("Raiz:" + (raiz!=null?raiz.chave:'*') + " f:" + raiz.frequencia);
         return Q.poll();
     }
 
