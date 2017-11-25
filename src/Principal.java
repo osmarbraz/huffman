@@ -9,7 +9,7 @@
  *
  * Página 312 Thomas H. Cormen 3a Ed 
  *
- * Código de Huffman com palavra de comprimento variável.
+ * Código de Huffman com sequência de tamanho variável.
  */
 
 /**
@@ -173,7 +173,7 @@ public class Principal {
 
     public static void main(String args[]) {
 
-        System.out.println(">>> Código de Huffman com palavra de comprimento variável <<<");
+        System.out.println(">>> Código de Huffman com sequência de tamanho variável <<<");
 
         //Entrada a ser codificada
         String palavra = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbccccccccccccddddddddddddddddeeeeeeeeefffff";
