@@ -32,6 +32,14 @@ public class Principal {
         private final int frequencia;
         private final No esquerda, direita;
 
+        /**
+         * Construtor sem argumentos do nó.
+         * 
+         * @param chave Valor char a ser armazenado.
+         * @param frequencia Valor inteiro da frequencia da chave.
+         * @param esquerda Nó filho da esquerda.
+         * @param direita  Nó filho da direita.
+         */
         No(char chave, int frequencia, No esquerda, No direita) {
             this.chave = chave;
             this.frequencia = frequencia;
@@ -40,7 +48,9 @@ public class Principal {
         }
 
         /**
-         * Verifica se um nó é folha
+         * Verifica se um nó é folha.
+         * 
+         * @return Verdadeiro se o nó é folha.
          */
         private boolean eFolha() {
             assert ((esquerda == null) && (direita == null)) || ((esquerda != null) && (direita != null));
@@ -48,7 +58,11 @@ public class Principal {
         }
 
         /**
-         * Compara baseado na frequencia
+         * Compara baseado na frequencia.
+         * 
+         * Realiza a comparação da frequência do nó.
+         * 
+         * @return um inteiro com a diferença do nó corrente com o comparado.
          */
         public int compareTo(No no) {
             return this.frequencia - no.frequencia;
@@ -58,7 +72,7 @@ public class Principal {
     /**
      * Mostra a tabela de frequência.
      *
-     * @param f Tabela de frequencia.
+     * @param f Tabela de frequencia da chave.
      */
     public static void mostrarFrequencia(int[] f) {
         int n = f.length;
@@ -94,8 +108,8 @@ public class Principal {
     /**
      * Conta a frequência de cada caracter.
      *
-     * @param caracteres vetor de caracteres
-     * @return um hashmap como a chave o caracter e a frequencia do caracter
+     * @param caracteres vetor de caracteres.
+     * @return um hashmap como a chave o caracter e a frequencia do caracter.
      */
     public static int[] frequencia(char[] caracteres) {
         int n = caracteres.length;
@@ -127,8 +141,8 @@ public class Principal {
      * Constroi a tabela de símbolos.
      *
      * @param tabelaSimbolo Tabela dos símbolos.
-     * @param raiz Raiz da árvore
-     * @param s String concatenada
+     * @param raiz Raiz da árvore.
+     * @param s String concatenada.
      */
     private static void constroiCodigo(String[] tabelaSimbolo, No raiz, String s) {
         if ((raiz != null) && (!raiz.eFolha())) {
