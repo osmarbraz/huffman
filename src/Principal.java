@@ -36,7 +36,7 @@ public class Principal {
          * Construtor sem argumentos do nó.
          * 
          * @param chave Valor char a ser armazenado.
-         * @param frequencia Valor inteiro da frequencia da chave.
+         * @param frequencia Valor inteiro da frequência da chave.
          * @param esquerda Nó filho da esquerda.
          * @param direita  Nó filho da direita.
          */
@@ -53,7 +53,7 @@ public class Principal {
          * @return Verdadeiro se o nó é folha.
          */
         private boolean eFolha() {
-            assert ((esquerda == null) && (direita == null)) || ((esquerda != null) && (direita != null));
+            //assert ((esquerda == null) && (direita == null)) || ((esquerda != null) && (direita != null));
             return (esquerda == null) && (direita == null);
         }
 
@@ -112,7 +112,7 @@ public class Principal {
      * Conta a frequência de cada caracter.
      *
      * @param caracteres vetor de caracteres.
-     * @return um hashmap como a chave o caracter e a frequencia do caracter.
+     * @return um hashmap como a chave o caracter e a frequência do caracter.
      */
     public static int[] frequencia(char[] caracteres) {
         int n = caracteres.length;
@@ -126,7 +126,7 @@ public class Principal {
     /**
      * Retorna a fila de prioridade da tabela de frequência dos caracteres.
      *
-     * @param f Tabela de frequencia dos caracteres.
+     * @param f Tabela de frequência dos caracteres.
      * @return A fila de prioridade.
      */
     public static PriorityQueue filaPrioridade(int[] f) {
@@ -194,7 +194,7 @@ public class Principal {
 
         //Entrada a ser codificada
         String palavra = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbccccccccccccddddddddddddddddeeeeeeeeefffff";
-        
+                
         //Transforma a String em um vetor de char
         char[] caracteres = palavra.toCharArray();
 
