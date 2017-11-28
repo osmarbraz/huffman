@@ -76,11 +76,14 @@ public class Principal {
      */
     public static void mostrarFrequencia(int[] f) {
         int n = f.length;
+        int total = 0;
         for (char i = 0; i < n; i++) {
             if (f[i] != 0) {
                 System.out.println(i + " = " + f[i] + " ");
+                total = total + f[i];
             }
         }
+        System.out.println("Total:" + total);
     }
 
     /**
@@ -191,7 +194,7 @@ public class Principal {
 
         //Entrada a ser codificada
         String palavra = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbccccccccccccddddddddddddddddeeeeeeeeefffff";
-
+        
         //Transforma a String em um vetor de char
         char[] caracteres = palavra.toCharArray();
 
@@ -200,6 +203,7 @@ public class Principal {
 
         System.out.println("Tabela de frequência:");
         mostrarFrequencia(C);
+        System.out.println();
 
         //Retorna a raiz da árvore com os códigos apartir da tabela de frequencia C
         No raiz = (No) codigoHuffman(C);
@@ -209,7 +213,7 @@ public class Principal {
         constroiCodigo(tabelaSimbolo, raiz, "");
 
         //Mostra a tabela de códigos.
-        System.out.println("Tabela de símbolos:");
+        System.out.println("\nTabela de símbolos:");
         mostrarTabelaSimbolos(tabelaSimbolo);
     }
 }
